@@ -15,31 +15,34 @@ const Chat = () => {
 
   const handleSend = async () => {
     if (!input.trim()) return
-
+  
     const userMessage = input
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: 'user', text: userMessage },
-    ])
-
-    setIsBotTyping(true)
-
-    let botReply = ''
-    await getAdviceForMood(userMessage, (partial) => {
-      botReply = partial
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'bot-temp', text: partial },
-      ])
-    })
-
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { sender: 'bot', text: botReply },
-    ])
-    setIsBotTyping(false)
-
+    let currentMessages: Message[] = [
+      ...messages,
+      { sender: 'user', text: userMessage }
+    ]
+    setMessages(currentMessages)
     setInput('')
+    setIsBotTyping(true)
+  
+    let botReply = ''
+    await getAdviceForMood(userMessage, (partial: string) => {
+      botReply = partial
+      const filtered = currentMessages.filter(msg => msg.sender !== 'bot-temp')
+      currentMessages = [
+        ...filtered,
+        { sender: 'bot-temp', text: partial }
+      ]
+      setMessages(currentMessages)
+    })
+  
+    const filtered = currentMessages.filter(msg => msg.sender !== 'bot-temp')
+    currentMessages = [
+      ...filtered,
+      { sender: 'bot', text: botReply }
+    ]
+    setMessages(currentMessages)
+    setIsBotTyping(false)
   }
 
   return (
