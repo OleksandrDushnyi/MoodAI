@@ -2,6 +2,7 @@ import { useState } from 'react'
 import MoodSelector from '../components/MoodSelector'
 import Chat from '../components/Chat'
 import ThoughtDiary from '../components/ThoughtDiary'
+import OtherFeatures from '../components/OtherFeatures'
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<'mood' | 'chat' | 'other' | 'diary'>('mood')
@@ -40,7 +41,7 @@ const Dashboard = () => {
         {activeTab === 'mood' && <MoodSelector />}
         {activeTab === 'chat' && <Chat/>}
         {activeTab === 'diary' && <ThoughtDiary />}
-        {activeTab === 'other' && <div>Інші функції...</div>}
+        {activeTab === 'other' && <OtherFeatures />}
       </div>
     </div>
   )
