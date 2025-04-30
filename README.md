@@ -1,2 +1,3 @@
 # MoodAI
-![image](https://github.com/user-attachments/assets/32a6eb58-ddf3-4cd8-abf6-9a3f012246f5)
+![image](https://github.com/user-attachments/assets/fca90758-c580-4123-a132-f7aee3aec92e)
+
