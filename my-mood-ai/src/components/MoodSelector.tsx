@@ -2,10 +2,13 @@ import { useState } from 'react'
 import MoodCard from './MoodCard'
 import { moods } from '../utils/moods'
 import { getAdviceForMood } from '../services/gemini'
+import useLocalStorage from '../hooks/useLocalStorage' 
 
 const MoodSelector = () => {
   const [response, setResponse] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const [moodHistory, setMoodHistory] = useLocalStorage<string[]>('mood-history', [])
 
   const handleMoodClick = async (mood: string) => {
     setLoading(true)
@@ -14,6 +17,8 @@ const MoodSelector = () => {
       setResponse(partialText)
     })
     setLoading(false)
+
+    setMoodHistory([...moodHistory, mood])
   }
 
   return (
@@ -36,6 +41,15 @@ const MoodSelector = () => {
 
       {loading && <p className="text-indigo-700 text-sm animate-pulse">Завантаження...</p>}
       {response && <MoodCard text={response} />}
+
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold">Історія вибраних настроїв:</h2>
+        <ul className="list-disc pl-6 text-gray-700">
+          {moodHistory.map((mood, index) => (
+            <li key={index}>{mood}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
