@@ -26,7 +26,8 @@ const Chat = () => {
     setIsBotTyping(true)
   
     let botReply = ''
-    await getAdviceForMood(userMessage, (partial: string) => {
+    const userMessageWithContext = `Я зараз розповім про свої психологічні проблеми. ${userMessage} Дай мені пораду чи підтримку.`  
+    await getAdviceForMood(userMessageWithContext, (partial: string) => {
       botReply = partial
       const filtered = currentMessages.filter(msg => msg.sender !== 'bot-temp')
       currentMessages = [

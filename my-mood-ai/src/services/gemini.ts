@@ -1,5 +1,5 @@
 export const getAdviceForMood = async (
-    mood: string,
+    inputText: string,
     onProgress?: (partial: string) => void
   ): Promise<string> => {
     try {
@@ -15,7 +15,7 @@ export const getAdviceForMood = async (
               {
                 parts: [
                   {
-                    text: `Я відчуваю себе ${mood}. Дай мені пораду чи підтримку.`,
+                    text: inputText
                   },
                 ],
               },

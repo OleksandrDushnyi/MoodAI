@@ -17,10 +17,6 @@ const Goals = () => {
     }
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem('user-goals', JSON.stringify(goals))
-  }, [goals])
-
   const addGoal = () => {
     if (!newGoal.trim()) return
     const newItem: Goal = {
@@ -28,7 +24,10 @@ const Goals = () => {
       text: newGoal.trim(),
       completed: false,
     }
+
     setGoals((prev) => [...prev, newItem])
+    localStorage.setItem('user-goals', JSON.stringify([...goals, newItem]))
+    
     setNewGoal('')
   }
 
@@ -42,6 +41,10 @@ const Goals = () => {
 
   const deleteGoal = (id: number) => {
     setGoals((prev) => prev.filter((goal) => goal.id !== id))
+    localStorage.setItem(
+      'user-goals',
+      JSON.stringify(goals.filter((goal) => goal.id !== id))
+    )
   }
 
   return (

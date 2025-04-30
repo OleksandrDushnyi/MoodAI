@@ -13,7 +13,8 @@ const MoodSelector = () => {
   const handleMoodClick = async (mood: string) => {
     setLoading(true)
     setResponse('')
-    await getAdviceForMood(mood, (partialText) => {
+    const inputMood = `Я відчуваю себе ${mood}. Дай мені пораду чи підтримку.`;
+    await getAdviceForMood(inputMood, (partialText) => {
       setResponse(partialText)
     })
     setLoading(false)
