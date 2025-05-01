@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
 export const useAuth = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(() => {
-    return !!localStorage.getItem('token')
-  })
+  // const [isLogin, setIsLogin] = useState<boolean>(() => {
+  //   return !!localStorage.getItem('token')
+  // })
+
+  const [isLogin, setIsLogin] = useState<boolean>(true)
 
   const login = (token: string) => {
     localStorage.setItem('token', token)

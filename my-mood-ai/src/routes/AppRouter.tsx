@@ -1,4 +1,3 @@
-// routes/AppRouter.tsx
 import { Navigate, Route, Routes } from 'react-router-dom'
 // import { useAuth } from '../hooks/useAuth'
 import HomePage from '../pages/HomePage'
@@ -6,13 +5,14 @@ import Dashboard from '../pages/DashboardPage'
 import Layout from '../components/Layout'
 import AboutPage from '../pages/AboutPage'
 import ForumPage from '../pages/ForumPage'
+import LoginPage from '../pages/LoginPage'
 // import HomePage from '../pages/HomePage'
 // import Dashboard from '../pages/Dashboard'
 // import LoginPage from '../pages/LoginPage'
-// import { useAuth } from '../hooks/useAuth' // твій кастомний хук
+import { useAuth } from '../hooks/useAuth' // твій кастомний хук
 
 const AppRouter = () => {
-//   const { isLogin } = useAuth()
+  const { isLogin } = useAuth()
 
   return (
     <Routes>
@@ -22,17 +22,16 @@ const AppRouter = () => {
           </Layout>
         } />
       <Route path="/about" element={<Layout><AboutPage /></Layout>} />
-      {/* <Route path="/login" element={<LoginPage />} />  */}
+      <Route path="/login" element={<Layout><LoginPage /></Layout>} /> 
 
       <Route
         path="/dashboard"
-        // element={isLogin ? <Layout><Dashboard /></Layout> : <Navigate to="/login" replace />}
-        element={<Layout><Dashboard /></Layout>}
+        element={isLogin ? <Layout><Dashboard /></Layout> : <Navigate to="/login" replace />}
+
       />
          <Route
         path="/forum"
-        // element={isLogin ? <Layout><Dashboard /></Layout> : <Navigate to="/login" replace />}
-        element={<Layout><ForumPage /></Layout>}
+        element={isLogin ? <Layout><ForumPage /></Layout> : <Navigate to="/login" replace />}
       />
 
       <Route path="*" element={<Navigate to="/" replace />} />

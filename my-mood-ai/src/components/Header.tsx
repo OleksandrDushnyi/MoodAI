@@ -1,4 +1,3 @@
-// components/Header.tsx
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
@@ -18,8 +17,10 @@ export default function Header() {
           {isLogin ? (
             <>
               <Link to="/dashboard">Панель</Link>
+              <Link to="/forum">Форум</Link>
               <button onClick={logout} className="text-red-600 ml-4">Вийти</button>
             </>
+           
           ) : (
             <Link to="/login">Увійти</Link>
           )}
