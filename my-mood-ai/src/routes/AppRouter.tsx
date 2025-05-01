@@ -5,6 +5,7 @@ import HomePage from '../pages/HomePage'
 import Dashboard from '../pages/DashboardPage'
 import Layout from '../components/Layout'
 import AboutPage from '../pages/AboutPage'
+import ForumPage from '../pages/ForumPage'
 // import HomePage from '../pages/HomePage'
 // import Dashboard from '../pages/Dashboard'
 // import LoginPage from '../pages/LoginPage'
@@ -27,6 +28,11 @@ const AppRouter = () => {
         path="/dashboard"
         // element={isLogin ? <Layout><Dashboard /></Layout> : <Navigate to="/login" replace />}
         element={<Layout><Dashboard /></Layout>}
+      />
+         <Route
+        path="/forum"
+        // element={isLogin ? <Layout><Dashboard /></Layout> : <Navigate to="/login" replace />}
+        element={<Layout><ForumPage /></Layout>}
       />
 
       <Route path="*" element={<Navigate to="/" replace />} />
